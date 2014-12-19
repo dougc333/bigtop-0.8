@@ -25,9 +25,9 @@ mkdir build
 mkdir build/src
 
 # Build artifacts
-MAVEN_SKIP_TESTS="-DskipTests -DskipTest -DskipITs"
-mvn $ANT_OPTS $BUNDLE_SNAPPY -Pdist -Pnative -Psrc -Dtar ${MAVEN_SKIP_TESTS} install "$@"
-mvn site site:stage ${MAVEN_SKIP_TESTS} $@
+MAVEN_SKIP_TESTS="-DskipITs"
+/home/doug/apache-maven-3.2.3/bin/mvn $ANT_OPTS $BUNDLE_SNAPPY -Pdist -Pnative -Psrc -Dtar ${MAVEN_SKIP_TESTS} install "$@"
+/home/doug/apache-maven-3.2.3/bin/mvn site site:stage ${MAVEN_SKIP_TESTS} $@
 
 (cd build ; tar --strip-components=1 -xzvf  ../hadoop-dist/target/hadoop-${HADOOP_VERSION}.tar.gz)
 (cd build/src ; tar --strip-components=1 -xzvf  ../../hadoop-dist/target/hadoop-${HADOOP_VERSION}-src.tar.gz)
